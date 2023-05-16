@@ -83,3 +83,9 @@ module.exports.logOut = (req, res, next) => {
     next(ex);
   }
 };
+
+module.exports.overview = (req, res, next)=>{
+   res.status( 200 ).render( 'overview', {
+     data:"Okay",
+   } );
+}
