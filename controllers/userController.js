@@ -85,7 +85,12 @@ module.exports.logOut = (req, res, next) => {
 };
 
 module.exports.overview = (req, res, next)=>{
-   res.status( 200 ).render( 'overview', {
-     data:"Okay",
-   } );
+  try{
+    res.status( 200 ).render( 'overview', {
+      data:"Okay",
+    } );
+  }
+  catch(ex){
+    next(ex);
+  }
 }
