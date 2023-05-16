@@ -9,7 +9,7 @@ const {
 
 const router = require("express").Router();
 
-router.get("/", overview)
+router.get("/", overview);
 router.post("/login", login);
 router.post("/register", register);
 router.get("/allusers/:id", getAllUsers);
