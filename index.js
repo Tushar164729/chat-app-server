@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
+const AppError = require( './utils/appError' );
 const app = express();
 const socket = require("socket.io");
 require("dotenv").config();
@@ -24,6 +25,13 @@ mongoose
 app.use("/", authRoutes);
 // app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+app.all( '*', ( req, res, next ) =>
+{
+    // const err = new Error( `Can't find ${ req.originalUrl }` );
+    // err.status = 'fail';
+    // err.statusCode = 404;
+    next( new AppError( `Can't find ${ req.originalUrl } on this Server!`, 404 ) );
+} );
 
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on ${process.env.PORT}`)
