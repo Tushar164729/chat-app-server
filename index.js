@@ -21,8 +21,8 @@ mongoose
   .catch((err) => {
     console.log(err.message);
   });
-
-app.use("/api/auth", authRoutes);
+app.use("/", authRoutes);
+// app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
 const server = app.listen(process.env.PORT, () =>
